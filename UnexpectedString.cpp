@@ -11,24 +11,27 @@
 //                                         // temporary object destroyed
 //   someFunc(str);                        // <-- str points to unknown content
 //------------------------------------------------------------------------------
-// $ g++ -Wall -g -o UnexpectedString.exe UnexpectedString.cpp
 // $ ./UnexpectedString.exe
 // ### StringWrapper Object[0] c_str() = 0x4ab3b8. Constructor()
-// ### StringWrapper Object[1] c_str() = 0x6e76c8. Constructor(str)
-// ### StringWrapper Object[0] c_str() = 0x6e7698. Copy Assign Operator
-// ### StringWrapper Object[1] c_str() = 0x6e7708. Destructor
-// ### StringWrapper Object[2] c_str() = 0x6e76c8. Copy Constructor
-// oname.getName() = "Valid Name+++"
-// ### StringWrapper Object[2] c_str() = 0x6e7708. Destructor
-// ### StringWrapper Object[3] c_str() = 0x6e76c8. Copy Constructor
-// ### StringWrapper Object[3] c_str() = 0x6e76c8. c_str()
-// oname.getName().c_str() = "Valid Name+++"
-// ### StringWrapper Object[3] c_str() = 0x6e7708. Destructor
-// ### StringWrapper Object[4] c_str() = 0x6e76c8. Copy Constructor
-// ### StringWrapper Object[4] c_str() = 0x6e76c8. c_str()
-// ### StringWrapper Object[4] c_str() = 0x6e7b08. Destructor
-// str = "Destructor"   <<< the value should be garbage here.
-// ### StringWrapper Object[0] c_str() = 0x6e7b08. Destructor
+// ### OnlyName Constructor for implicit type conversion
+// ### StringWrapper Object[1] c_str() = 0x4ab3b8. Constructor for implicit type conversion
+// ### StringWrapper Object[0] c_str() = 0x4ab3b8. Copy Assign Operator
+// ### StringWrapper Object[1] c_str() = 0x3176d8. Destructor
+// ### StringWrapper Object[2] c_str() = 0x4ab3b8. Constructor for implicit type conversion
+// ### StringWrapper Object[0] c_str() = 0x3176a8. Copy Assign Operator
+// ### StringWrapper Object[2] c_str() = 0x317708. Destructor
+// ### StringWrapper Object[3] c_str() = 0x4ab3b8. Copy Constructor
+// oname.getName() >>> "Valid Name+++"
+// ### StringWrapper Object[3] c_str() = 0x317708. Destructor
+// ### StringWrapper Object[4] c_str() = 0x4ab3b8. Copy Constructor
+// ### StringWrapper Object[4] c_str() = 0x317708. c_str()
+// oname.getName().c_str() >>> "Valid Name+++"
+// ### StringWrapper Object[4] c_str() = 0x317708. Destructor
+// ### StringWrapper Object[5] c_str() = 0x4ab3b8. Copy Constructor
+// ### StringWrapper Object[5] c_str() = 0x317708. c_str()
+// ### StringWrapper Object[5] c_str() = 0x317708. Destructor
+// str >>> "" <<< the value is uncertain here.
+// ### StringWrapper Object[0] c_str() = 0x3176d8. Destructor
 //------------------------------------------------------------------------------
 
 #include <string>
